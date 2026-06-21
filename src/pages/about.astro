@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import CTABanner from '../components/CTABanner.astro';
+
+const values = [
+  {
+    title: 'Honesty First',
+    description: 'We tell you what we think — including when we\'re not the right fit for a project, or when your idea needs refining before development begins. No false promises.',
+  },
+  {
+    title: 'Quality Over Speed',
+    description: 'We set realistic timelines and we deliver within them. Rushing produces technical debt. We\'d rather take the time to do it properly than deliver something that causes problems later.',
+  },
+  {
+    title: 'You Own Everything',
+    description: 'Every line of code, every design asset, every account — it\'s yours. We don\'t lock you in. When a project ends, you have full access and ownership of everything we built.',
+  },
+  {
+    title: 'Long-Term Thinking',
+    description: 'We build for maintainability, not just for today. The decisions we make during a project are the ones that will affect your business for years. We take that responsibility seriously.',
+  },
+];
+
+const techStack = [
+  { category: 'Backend', items: ['.NET / C#', 'ASP.NET Core', 'Node.js', 'REST & GraphQL APIs'] },
+  { category: 'Frontend', items: ['React', 'Next.js', 'Astro', 'TypeScript'] },
+  { category: 'Mobile', items: ['.NET MAUI', 'React Native', 'iOS (Swift)', 'Android (Kotlin)'] },
+  { category: 'Data', items: ['SQL Server', 'PostgreSQL', 'Azure SQL', 'Entity Framework'] },
+  { category: 'Cloud', items: ['Microsoft Azure', 'Azure Static Web Apps', 'GitHub Actions', 'Docker'] },
+  { category: 'Integrations', items: ['Stripe', 'Xero / QuickBooks', 'Salesforce / HubSpot', 'Twilio / SendGrid'] },
+];
+---
+
+<BaseLayout
+  title="About Us"
+  description="Smartick Solutions Ltd is a UK-based software consultancy helping businesses build the technology they actually need. Learn about our approach, values, and team."
+>
+  <Header />
+  <main id="main-content">
+    <Hero
+      title="About Smartick Solutions"
+      subtitle="We're a UK software consultancy that helps businesses solve real problems with technology — without the jargon, the delays, or the surprises."
+      compact
+      badge="About Us"
+    />
+
+    <!-- Mission -->
+    <section class="py-20 md:py-28 bg-white">
+      <div class="container-custom">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div class="reveal">
+            <p class="section-label">Our Mission</p>
+            <h2 class="section-title">Technology That Serves Your Business</h2>
+            <div class="space-y-4 mt-6 text-gray-600 leading-relaxed">
+              <p>
+                Smartick Solutions Ltd was founded on a straightforward premise: most businesses are either underserved by the technology they're using, or over-sold on technology they don't actually need.
+              </p>
+              <p>
+                We bridge that gap. We take the time to understand how a business really works — the processes, the pain points, the ambitions — and then we build software, apps, and integrations that address those needs precisely.
+              </p>
+              <p>
+                We're a small team by design. It keeps us focused, accountable, and genuinely invested in every project we take on. When you work with Smartick Solutions, you're working with the people who write the code — not a sales team that hands you to someone else.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-5 reveal">
+            {[
+              { number: '10+', label: 'Years of Experience' },
+              { number: '50+', label: 'Projects Delivered' },
+              { number: '5', label: 'Core Services' },
+              { number: '100%', label: 'UK-Based' },
+            ].map(({ number, label }) => (
+              <div class="card p-6 text-center">
+                <p class="text-4xl font-extrabold text-navy">{number}</p>
+                <p class="text-gray-500 text-sm mt-2">{label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="py-20 bg-gray-50">
+      <div class="container-custom">
+        <div class="text-center reveal">
+          <p class="section-label">How We Work</p>
+          <h2 class="section-title mx-auto">Our Values</h2>
+          <p class="section-subtitle mx-auto">
+            These aren't aspirational statements for a website — they're the principles that guide how we handle every project and every client relationship.
+          </p>
+        </div>
+        <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-8">
+          {values.map((value, i) => (
+            <div class="card p-7 reveal" style={`transition-delay: ${i * 80}ms`}>
+              <div class="h-1 w-10 bg-scarlet rounded mb-5"></div>
+              <h3 class="font-bold text-navy-dark text-lg mb-2">{value.title}</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">{value.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech stack -->
+    <section class="relative py-20 bg-navy-dark overflow-hidden">
+      <!-- Dot grid -->
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1.5px, transparent 1.5px); background-size: 30px 30px;" aria-hidden="true"></div>
+      <!-- Mesh -->
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse 65% 60% at 85% 20%, rgba(43,48,196,0.4) 0%, transparent 65%), radial-gradient(ellipse 50% 50% at 15% 80%, rgba(27,31,138,0.4) 0%, transparent 60%), radial-gradient(ellipse 30% 30% at 50% 100%, rgba(232,0,29,0.06) 0%, transparent 55%);" aria-hidden="true"></div>
+      <!-- Geometric SVG: data flow lines -->
+      <div class="absolute inset-0 pointer-events-none hidden lg:block" aria-hidden="true">
+        <svg class="w-full h-full opacity-10" viewBox="0 0 1440 400" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0"    y1="100" x2="1440" y2="100" stroke="white" stroke-width="1"/>
+          <line x1="0"    y1="300" x2="1440" y2="300" stroke="white" stroke-width="1"/>
+          <line x1="240"  y1="0"   x2="240"  y2="400" stroke="white" stroke-width="1"/>
+          <line x1="720"  y1="0"   x2="720"  y2="400" stroke="white" stroke-width="1"/>
+          <line x1="1200" y1="0"   x2="1200" y2="400" stroke="white" stroke-width="1"/>
+          <circle cx="240"  cy="100" r="5" fill="white"/>
+          <circle cx="720"  cy="100" r="8" fill="white"/>
+          <circle cx="1200" cy="100" r="5" fill="white"/>
+          <circle cx="240"  cy="300" r="5" fill="white"/>
+          <circle cx="720"  cy="300" r="5" fill="white"/>
+          <circle cx="1200" cy="300" r="8" fill="white"/>
+          <path d="M 240 100 L 480 100 L 480 200 L 720 200 L 720 300" stroke="white" stroke-width="2"/>
+          <path d="M 720 100 L 960 100 L 960 200 L 1200 200 L 1200 300" stroke="white" stroke-width="2"/>
+          <circle cx="480" cy="200" r="5" fill="white"/>
+          <circle cx="960" cy="200" r="5" fill="white"/>
+        </svg>
+      </div>
+      <!-- Glow -->
+      <div class="absolute right-1/3 top-1/2 -translate-y-1/2 w-96 h-64 rounded-full" style="background: radial-gradient(ellipse, rgba(59,68,220,0.25) 0%, transparent 70%); filter: blur(70px);" aria-hidden="true"></div>
+
+      <div class="container-custom relative z-10">
+        <div class="text-center reveal">
+          <p class="text-scarlet font-semibold text-sm uppercase tracking-widest">Technology</p>
+          <h2 class="text-3xl md:text-4xl font-bold text-white mt-2">Our Tech Stack</h2>
+          <p class="text-gray-400 mt-4 max-w-xl mx-auto">
+            We choose the right tools for each project — not the trendy ones. Our core stack is proven, well-supported, and battle-tested.
+          </p>
+        </div>
+        <div class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-6">
+          {techStack.map((group, i) => (
+            <div class="bg-white/5 border border-white/10 rounded-xl p-6 reveal" style={`transition-delay: ${i * 80}ms`}>
+              <h3 class="text-scarlet font-semibold text-xs uppercase tracking-wider mb-4">{group.category}</h3>
+              <ul class="space-y-2">
+                {group.items.map((item) => (
+                  <li class="text-gray-300 text-sm flex items-center gap-2">
+                    <span class="h-1 w-1 rounded-full bg-scarlet flex-shrink-0"></span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTABanner
+      title="Work With a Team You Can Trust"
+      subtitle="No jargon, no surprises, no lock-in. Just solid software delivered by people who care."
+      primaryCta={{ label: 'Get in Touch', href: '/contact' }}
+      secondaryCta={{ label: 'See Our Services', href: '/services' }}
+    />
+  </main>
+  <Footer />
+</BaseLayout>

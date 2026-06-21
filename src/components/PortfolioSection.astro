@@ -1,0 +1,127 @@
+---
+interface Props {
+  preview?: boolean;
+}
+const { preview = false } = Astro.props;
+
+const allItems = [
+  {
+    title: 'ReceiptsAuto Management System',
+    category: 'Bespoke Software',
+    description: 'Custom receipts management platform for a out of school learning centre — replacing spreadsheets with a fully automated receipts generation for Universal Credit.',
+    tags: ['ASP.NET Core', 'React', 'Azure', 'SQL Server'],
+    gradient: 'from-navy to-navy-dark',
+    slug: 'receiptsauto',
+  },
+  {
+    title: 'FieldOps Management System',
+    category: 'Bespoke Software',
+    description: 'Custom job management platform for a field services company — replacing spreadsheets with a fully automated scheduling, dispatch, and reporting system.',
+    tags: ['ASP.NET Core', 'React', 'Azure', 'SQL Server'],
+    gradient: 'from-navy to-navy-dark',
+    slug: 'fieldops',
+  },
+  {
+    title: 'ParentConnect Mobile App',
+    category: 'Mobile App Development',
+    description: 'Cross-platform iOS and Android app enabling parents to manage school pickups, notifications, and schedules in real time, integrated with the school\'s existing system.',
+    tags: ['.NET MAUI', 'SignalR', 'Push Notifications'],
+    gradient: 'from-scarlet to-red-800',
+    slug: 'parentconnect',
+  },
+  {
+    title: 'ShopPro E-Commerce Platform',
+    category: 'Website Development',
+    description: 'End-to-end e-commerce solution with custom inventory management, payments, and a real-time analytics dashboard for a retail brand.',
+    tags: ['WordPress', 'Php', 'My SQL'],
+    gradient: 'from-blue-600 to-indigo-800',
+    slug: 'shoppro',
+  },
+  // {
+  //   title: 'Xero + Salesforce Integration',
+  //   category: 'Integration Services',
+  //   description: 'Bi-directional sync between Salesforce CRM and Xero accounting — eliminating 8 hours per week of manual data entry and reducing invoice errors to near zero.',
+  //   tags: ['REST APIs', 'Webhooks', 'Azure Functions'],
+  //   gradient: 'from-emerald-600 to-teal-800',
+  //   slug: 'xero-salesforce',
+  // },
+  // {
+  //   title: 'MedPortal Healthcare Platform',
+  //   category: 'Bespoke Software',
+  //   description: 'Secure patient-facing portal for a private healthcare provider — appointment booking, document upload, and two-way messaging with clinical staff.',
+  //   tags: ['Next.js', '.NET', 'Azure', 'GDPR-compliant'],
+  //   gradient: 'from-violet-600 to-purple-800',
+  //   slug: 'medportal',
+  // },
+  // {
+  //   title: 'Cloud Architecture Review',
+  //   category: 'Architecture Consultation',
+  //   description: 'Full architecture review and modernisation roadmap for a FinTech startup scaling from 1k to 100k users — resulting in 60% infrastructure cost reduction.',
+  //   tags: ['Azure', 'Microservices', 'Cost Optimisation'],
+  //   gradient: 'from-amber-600 to-orange-700',
+  //   slug: 'fintech-architecture',
+  // },
+];
+
+const items = preview ? allItems.slice(0, 3) : allItems;
+
+const categoryColours: Record<string, string> = {
+  'Website Development': 'bg-blue-100 text-blue-800',
+  'Bespoke Software': 'bg-navy-100 text-navy',
+  'Mobile App Development': 'bg-red-100 text-red-800',
+  'Integration Services': 'bg-emerald-100 text-emerald-800',
+  'Architecture Consultation': 'bg-amber-100 text-amber-800',
+};
+---
+
+<section class={`py-20 md:py-28 ${preview ? 'bg-white' : 'bg-gray-50'}`} id="portfolio">
+  <div class="container-custom">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 reveal">
+      <div>
+        <p class="section-label">Our Work</p>
+        <h2 class="section-title">{preview ? 'Recent Projects' : 'Portfolio & Case Studies'}</h2>
+        {preview && (
+          <p class="section-subtitle">A selection of projects we've delivered for clients across the UK.</p>
+        )}
+      </div>
+      {preview && (
+        <a href="/portfolio" class="btn-secondary flex-shrink-0">
+          View All Projects
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      )}
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {items.map((item, i) => (
+        <article class="card overflow-hidden group reveal" style={`transition-delay: ${i * 80}ms`}>
+          <!-- Visual header -->
+          <div class={`bg-gradient-to-br ${item.gradient} h-44 flex items-end p-5`}>
+            <span class={`text-xs font-semibold px-3 py-1 rounded-full bg-white/20 text-white backdrop-blur-sm`}>
+              {item.category}
+            </span>
+          </div>
+
+          <div class="p-6">
+            <h3 class="text-base font-bold text-navy-dark mb-2 group-hover:text-scarlet transition-colors">{item.title}</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-4">{item.description}</p>
+            <div class="flex flex-wrap gap-2">
+              {item.tags.map((tag) => (
+                <span class="text-xs px-2.5 py-1 bg-gray-100 text-gray-600 rounded-full">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    {!preview && (
+      <div class="mt-14 text-center reveal">
+        <p class="text-gray-500 mb-4">Have a project in mind?</p>
+        <a href="/contact" class="btn-primary">Start a Conversation</a>
+      </div>
+    )}
+  </div>
+</section>

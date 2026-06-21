@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import PortfolioSection from '../components/PortfolioSection.astro';
+import CTABanner from '../components/CTABanner.astro';
+---
+
+<BaseLayout
+  title="Portfolio & Case Studies"
+  description="See how Smartick Solutions has delivered bespoke software, mobile apps, integrations, and websites for UK businesses across a range of industries."
+>
+  <Header />
+  <main id="main-content">
+    <Hero
+      title="Our Work"
+      subtitle="A selection of projects we've delivered — from bespoke systems to mobile apps and integrations."
+      compact
+      badge="Portfolio"
+    />
+    <PortfolioSection />
+    <CTABanner
+      title="Have a Project in Mind?"
+      subtitle="Tell us about your challenge and we'll come back with an honest assessment and a clear plan."
+      primaryCta={{ label: 'Start the Conversation', href: '/contact' }}
+      secondaryCta={{ label: 'See Our Services', href: '/services' }}
+    />
+  </main>
+  <Footer />
+</BaseLayout>

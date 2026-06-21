@@ -1,0 +1,82 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Discovery & Scoping',
+    description: "We start by deeply understanding your business goals, users, and technical environment. Clear, documented requirements mean confident execution — no assumptions, no surprises.",
+    iconPath: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
+  },
+  {
+    number: '02',
+    title: 'Architecture & Design',
+    description: "Our architects design a complete solution blueprint — technology stack, data models, integration points, and delivery milestones. You review and approve before a single line of code is written.",
+    iconPath: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3',
+  },
+  {
+    number: '03',
+    title: 'Agile Development',
+    description: "Development runs in focused, structured sprints with weekly progress updates and live demos. You have full visibility throughout — no black boxes, no radio silence, no last-minute shocks.",
+    iconPath: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4',
+  },
+  {
+    number: '04',
+    title: 'Launch & Ongoing Support',
+    description: "Rigorous QA before every release. We handle deployment, documentation, and team handover — then remain on hand for ongoing support, enhancements, and future development.",
+    iconPath: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
+  },
+];
+---
+
+<section class="py-20 md:py-28 bg-gray-50" id="process">
+  <div class="container-custom">
+
+    <!-- Centered section header -->
+    <div class="text-center reveal mb-16">
+      <span class="section-label-center">How We Work</span>
+      <h2 class="section-title mt-3">A Clear Process. No Surprises.</h2>
+      <p class="section-subtitle mx-auto text-center">
+        A structured, transparent approach that keeps you in full control — from the first conversation to go-live and beyond.
+      </p>
+    </div>
+
+    <!-- Steps grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {steps.map((step, i) => (
+        <div class="relative reveal" style={`transition-delay: ${i * 100}ms`}>
+
+          <!-- Step number + connector -->
+          <div class="flex items-center gap-4 mb-6">
+            <span class="text-5xl font-black text-scarlet leading-none select-none tabular-nums">{step.number}</span>
+            {i < steps.length - 1 && (
+              <div class="hidden lg:block flex-1 h-0.5 border-t-2 border-dashed border-gray-300 mt-1"></div>
+            )}
+          </div>
+
+          <!-- Icon -->
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-navy-dark mb-5">
+            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d={step.iconPath} />
+            </svg>
+          </div>
+
+          <h3 class="text-lg font-extrabold text-navy-dark mb-3" style="letter-spacing: -0.015em;">{step.title}</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">{step.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom CTA strip -->
+    <div class="mt-16 p-8 bg-navy-dark rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 reveal" style="transition-delay: 400ms;">
+      <div>
+        <p class="text-white font-extrabold text-xl" style="letter-spacing: -0.02em;">Ready to start your project?</p>
+        <p class="text-gray-400 text-sm mt-1">Book a free 30-minute discovery call — no commitment required.</p>
+      </div>
+      <a href="/contact" class="btn-primary flex-shrink-0">
+        Book a Free Consultation
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,128 @@
+---
+const stats = [
+  { value: '10+', label: 'Years of Experience' },
+  { value: '50+', label: 'Projects Delivered' },
+  { value: '100%', label: 'UK-Based Team' },
+  { value: '24h', label: 'Avg. Response Time' },
+];
+
+const reasons = [
+  {
+    icon: 'shield',
+    title: 'Fixed-Price Projects',
+    description: 'We agree a clear scope and price upfront. No surprise invoices, no scope creep. You know exactly what you\'re getting and what it costs.',
+  },
+  {
+    icon: 'clock',
+    title: 'On-Time Delivery',
+    description: 'We set realistic timelines and we stick to them. Milestone-based delivery keeps you informed throughout — no radio silence, no last-minute delays.',
+  },
+  {
+    icon: 'users',
+    title: 'Genuine Partnership',
+    description: 'We don\'t disappear after launch. Ongoing support, maintenance, and future development — we\'re invested in the long-term success of what we build.',
+  },
+  {
+    icon: 'star',
+    title: 'UK-Based & Accountable',
+    description: 'Based in the UK, operating under UK law, and registered as a limited company. You\'re dealing with a professional, regulated business.',
+  },
+];
+
+const iconPaths: Record<string, string> = {
+  shield: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+  clock: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
+  users: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
+  star: 'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z',
+};
+---
+
+<!-- Stats bar -->
+<section class="relative bg-navy py-14 overflow-hidden" aria-label="Company statistics">
+  <!-- Dot grid -->
+  <div class="absolute inset-0 stats-dots" aria-hidden="true"></div>
+  <!-- Mesh -->
+  <div class="absolute inset-0 stats-mesh" aria-hidden="true"></div>
+  <!-- Horizontal circuit lines -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <svg class="w-full h-full opacity-15" viewBox="0 0 1440 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="30" x2="1440" y2="30" stroke="white" stroke-width="1"/>
+      <line x1="0" y1="90" x2="1440" y2="90" stroke="white" stroke-width="1"/>
+      <circle cx="180"  cy="30" r="4" fill="white"/>
+      <circle cx="360"  cy="30" r="4" fill="white"/>
+      <circle cx="540"  cy="30" r="4" fill="white"/>
+      <circle cx="720"  cy="30" r="6" fill="white"/>
+      <circle cx="900"  cy="30" r="4" fill="white"/>
+      <circle cx="1080" cy="30" r="4" fill="white"/>
+      <circle cx="1260" cy="30" r="4" fill="white"/>
+      <circle cx="180"  cy="90" r="4" fill="white"/>
+      <circle cx="360"  cy="90" r="4" fill="white"/>
+      <circle cx="540"  cy="90" r="6" fill="white"/>
+      <circle cx="720"  cy="90" r="4" fill="white"/>
+      <circle cx="900"  cy="90" r="4" fill="white"/>
+      <circle cx="1080" cy="90" r="6" fill="white"/>
+      <circle cx="1260" cy="90" r="4" fill="white"/>
+      <path d="M 360 30 L 360 90" stroke="white" stroke-width="1"/>
+      <path d="M 720 30 L 720 90" stroke="white" stroke-width="1"/>
+      <path d="M 1080 30 L 1080 90" stroke="white" stroke-width="1"/>
+      <path d="M 540 30 L 540 60 L 620 60 L 620 90" stroke="white" stroke-width="1.5"/>
+      <path d="M 900 90 L 900 60 L 980 60 L 980 30" stroke="white" stroke-width="1.5"/>
+    </svg>
+  </div>
+  <!-- Glow -->
+  <div class="absolute left-1/4 top-1/2 -translate-y-1/2 w-96 h-32 stats-glow" aria-hidden="true"></div>
+
+  <div class="container-custom relative z-10">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      {stats.map(({ value, label }) => (
+        <div class="reveal">
+          <p class="text-4xl font-extrabold text-white">{value}</p>
+          <p class="text-navy-100 text-sm mt-2">{label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats-dots {
+    background-image: radial-gradient(circle, rgba(255,255,255,0.13) 1.5px, transparent 1.5px);
+    background-size: 30px 30px;
+  }
+  .stats-mesh {
+    background:
+      radial-gradient(ellipse 60% 80% at 10% 50%, rgba(43,48,220,0.35) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 80% at 90% 50%, rgba(27,31,138,0.4)  0%, transparent 65%);
+  }
+  .stats-glow {
+    background: radial-gradient(ellipse, rgba(255,255,255,0.06) 0%, transparent 70%);
+    filter: blur(30px);
+  }
+</style>
+
+<!-- Why choose us -->
+<section class="py-20 md:py-28 bg-gray-50" id="why-us">
+  <div class="container-custom">
+    <div class="reveal">
+      <p class="section-label">Why Smartick Solutions</p>
+      <h2 class="section-title">The Difference Is in How We Work</h2>
+      <p class="section-subtitle">
+        Good software isn't just about the code — it's about the relationship. Here's what sets our engagements apart.
+      </p>
+    </div>
+
+    <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 gap-8">
+      {reasons.map((reason, i) => (
+        <div class="card p-8 reveal" style={`transition-delay: ${i * 100}ms`}>
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-scarlet text-white mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d={iconPaths[reason.icon]} />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-navy-dark mb-2">{reason.title}</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">{reason.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

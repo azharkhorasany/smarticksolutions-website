@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-gray-800 antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4 {
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-navy;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-scarlet text-white px-7 py-3.5 rounded-lg font-bold
+           hover:bg-scarlet-dark active:scale-[0.98] transition-all duration-200
+           focus-visible:ring-2 focus-visible:ring-scarlet shadow-sm hover:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 border-2 border-navy text-navy px-7 py-3.5 rounded-lg font-bold
+           hover:bg-navy hover:text-white transition-colors duration-200;
+  }
+
+  .btn-outline-white {
+    @apply inline-flex items-center gap-2 border-2 border-white text-white px-7 py-3.5 rounded-lg font-bold
+           hover:bg-white hover:text-navy-dark transition-colors duration-200;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full;
+  }
+
+  /* Section label: left-aligned version gets a leading red line */
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #E8001D;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 1.5rem;
+    background-color: #E8001D;
+    flex-shrink: 0;
+  }
+
+  /* Centered section header pair */
+  .section-label-center {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    color: #E8001D;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  .section-label-center::before,
+  .section-label-center::after {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 1.5rem;
+    background-color: #E8001D;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-extrabold text-navy-dark mt-3;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-gray-500 mt-4 max-w-2xl leading-relaxed;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .tracking-tighter-custom {
+    letter-spacing: -0.03em;
+  }
+}
+
+/* Scroll-triggered reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

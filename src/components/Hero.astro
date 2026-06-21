@@ -1,0 +1,200 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  badge?: string;
+  compact?: boolean;
+}
+
+const {
+  title = 'Smart Technology.\nReal Results.',
+  subtitle = "We build bespoke software, mobile apps, and websites that solve real business problems — designed around your needs, not anyone else's.",
+  primaryCta = { label: 'Explore Our Services', href: '/services' },
+  secondaryCta = { label: 'View Portfolio', href: '/portfolio' },
+  badge,
+  compact = false,
+} = Astro.props;
+---
+
+<section
+  class={`hero-section relative overflow-hidden ${compact ? 'py-20' : 'py-28 md:py-40'}`}
+  aria-label="Hero"
+>
+  <!-- ── Layered background ─────────────────────────────────── -->
+
+  <!-- 1. Mesh gradient base -->
+  <div class="absolute inset-0 hero-mesh" aria-hidden="true"></div>
+
+  <!-- 2. Dot-grid texture -->
+  <div class="absolute inset-0 hero-dots" aria-hidden="true"></div>
+
+  <!-- 3. Glow blobs -->
+  <div class="absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full hero-blob-blue" aria-hidden="true"></div>
+  <div class="absolute -bottom-32 left-1/3 w-[500px] h-[500px] rounded-full hero-blob-red" aria-hidden="true"></div>
+  <div class="absolute top-1/2 -translate-y-1/2 right-0 w-[400px] h-[600px] rounded-full hero-blob-indigo" aria-hidden="true"></div>
+
+  <!-- 4. Decorative circuit / geometric SVG (right side, desktop only) -->
+  {!compact && (
+    <div class="absolute right-0 top-0 h-full w-1/2 hidden lg:block pointer-events-none" aria-hidden="true">
+      <svg class="absolute right-0 top-0 h-full w-full opacity-[0.18]" viewBox="0 0 600 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Circuit board lines -->
+        <line x1="100" y1="0" x2="100" y2="700" stroke="white" stroke-width="1"/>
+        <line x1="250" y1="0" x2="250" y2="700" stroke="white" stroke-width="1"/>
+        <line x1="400" y1="0" x2="400" y2="700" stroke="white" stroke-width="1"/>
+        <line x1="0" y1="150" x2="600" y2="150" stroke="white" stroke-width="1"/>
+        <line x1="0" y1="350" x2="600" y2="350" stroke="white" stroke-width="1"/>
+        <line x1="0" y1="550" x2="600" y2="550" stroke="white" stroke-width="1"/>
+        <!-- Junction dots -->
+        <circle cx="100" cy="150" r="5" fill="white"/>
+        <circle cx="250" cy="150" r="5" fill="white"/>
+        <circle cx="400" cy="150" r="5" fill="white"/>
+        <circle cx="100" cy="350" r="5" fill="white"/>
+        <circle cx="250" cy="350" r="8" fill="white"/>
+        <circle cx="400" cy="350" r="5" fill="white"/>
+        <circle cx="100" cy="550" r="5" fill="white"/>
+        <circle cx="250" cy="550" r="5" fill="white"/>
+        <circle cx="400" cy="550" r="5" fill="white"/>
+        <!-- Accent circuit traces -->
+        <path d="M 100 150 L 175 150 L 175 250 L 250 250" stroke="white" stroke-width="2"/>
+        <path d="M 250 350 L 325 350 L 325 450 L 400 450 L 400 550" stroke="white" stroke-width="2"/>
+        <path d="M 100 550 L 100 470 L 175 470 L 175 350 L 250 350" stroke="white" stroke-width="2"/>
+        <path d="M 400 150 L 480 150 L 480 250 L 560 250" stroke="white" stroke-width="1.5"/>
+        <!-- Processor box -->
+        <rect x="185" y="300" width="130" height="100" rx="8" stroke="white" stroke-width="2" fill="none"/>
+        <rect x="200" y="315" width="100" height="70" rx="4" stroke="white" stroke-width="1" fill="white" fill-opacity="0.05"/>
+        <!-- Chip pins -->
+        <line x1="185" y1="320" x2="165" y2="320" stroke="white" stroke-width="1.5"/>
+        <line x1="185" y1="340" x2="165" y2="340" stroke="white" stroke-width="1.5"/>
+        <line x1="185" y1="360" x2="165" y2="360" stroke="white" stroke-width="1.5"/>
+        <line x1="185" y1="380" x2="165" y2="380" stroke="white" stroke-width="1.5"/>
+        <line x1="315" y1="320" x2="335" y2="320" stroke="white" stroke-width="1.5"/>
+        <line x1="315" y1="340" x2="335" y2="340" stroke="white" stroke-width="1.5"/>
+        <line x1="315" y1="360" x2="335" y2="360" stroke="white" stroke-width="1.5"/>
+        <line x1="315" y1="380" x2="335" y2="380" stroke="white" stroke-width="1.5"/>
+        <!-- Small accent circles -->
+        <circle cx="480" cy="420" r="20" stroke="white" stroke-width="1.5" fill="none"/>
+        <circle cx="480" cy="420" r="8" fill="white" fill-opacity="0.2"/>
+        <circle cx="520" cy="200" r="15" stroke="white" stroke-width="1" fill="none"/>
+        <circle cx="80" cy="260" r="12" stroke="white" stroke-width="1" fill="none"/>
+        <circle cx="80" cy="260" r="4" fill="white" fill-opacity="0.3"/>
+      </svg>
+
+      <!-- Glowing accent ring -->
+      <div class="absolute right-24 top-1/2 -translate-y-1/2 w-72 h-72 rounded-full border border-white/10 flex items-center justify-center">
+        <div class="w-52 h-52 rounded-full border border-white/10 flex items-center justify-center">
+          <div class="w-32 h-32 rounded-full border border-scarlet/30 hero-pulse"></div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- ── Content ────────────────────────────────────────────── -->
+  <div class="container-custom relative z-10">
+    <div class={`${compact ? 'max-w-3xl' : 'max-w-2xl lg:max-w-3xl'}`}>
+
+      {badge ? (
+        <div class="inline-flex items-center gap-2 mb-6">
+          <span class="h-px w-8 bg-scarlet"></span>
+          <span class="text-scarlet font-semibold text-sm uppercase tracking-widest">{badge}</span>
+        </div>
+      ) : !compact && (
+        <div class="inline-flex items-center gap-2 mb-6">
+          <span class="h-px w-8 bg-scarlet"></span>
+          <span class="text-scarlet font-semibold text-sm uppercase tracking-widest">UK Software Consultancy</span>
+        </div>
+      )}
+
+      <h1
+        class={`text-white font-extrabold leading-none text-balance`}
+        style={`white-space: pre-line; letter-spacing: -0.03em; font-size: ${compact ? 'clamp(2rem, 5vw, 3rem)' : 'clamp(3rem, 7vw, 6rem)'};`}
+      >
+        {title}
+      </h1>
+
+      {!compact && (
+        <p class="mt-6 text-gray-300 text-lg md:text-xl leading-relaxed max-w-xl">
+          {subtitle}
+        </p>
+      )}
+
+      {compact && subtitle && (
+        <p class="mt-4 text-gray-300 text-base md:text-lg leading-relaxed">
+          {subtitle}
+        </p>
+      )}
+
+      {!compact && (
+        <div class="flex flex-col sm:flex-row gap-4 mt-10">
+          <a href={primaryCta.href} class="btn-primary text-base px-8 py-4">
+            {primaryCta.label}
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a href={secondaryCta.href} class="btn-outline-white text-base px-8 py-4">
+            {secondaryCta.label}
+          </a>
+        </div>
+      )}
+
+      {!compact && (
+        <div class="mt-14 pt-8 border-t border-white/10 flex flex-wrap gap-10">
+          {[
+            { value: '20+', label: 'Years Experience' },
+            { value: '10+', label: 'Projects Delivered' },
+            { value: '100%', label: 'UK-Based Team' },
+            { value: '5★',  label: 'Client Satisfaction' },
+          ].map(({ value, label }) => (
+            <div>
+              <p class="text-3xl font-extrabold text-white">{value}</p>
+              <p class="text-gray-400 text-sm mt-1">{label}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Mesh gradient background */
+  .hero-mesh {
+    background:
+      radial-gradient(ellipse 70% 60% at 15% 20%, rgba(43, 48, 196, 0.45) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 50% at 85% 80%, rgba(27, 31, 138, 0.5)  0%, transparent 60%),
+      radial-gradient(ellipse 60% 70% at 70% 10%, rgba(8,  12, 60,  0.7)  0%, transparent 70%),
+      radial-gradient(ellipse 80% 40% at 5%  90%, rgba(232,0, 29,  0.07)  0%, transparent 55%),
+      linear-gradient(145deg, #0D0F4F 0%, #080a38 55%, #0d0f50 100%);
+  }
+
+  /* Dot texture overlay */
+  .hero-dots {
+    background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Glow blobs */
+  .hero-blob-blue {
+    background: radial-gradient(circle, rgba(59, 68, 220, 0.35) 0%, transparent 70%);
+    filter: blur(60px);
+  }
+  .hero-blob-red {
+    background: radial-gradient(circle, rgba(232, 0, 29, 0.12) 0%, transparent 70%);
+    filter: blur(80px);
+  }
+  .hero-blob-indigo {
+    background: radial-gradient(circle, rgba(79, 90, 255, 0.2) 0%, transparent 70%);
+    filter: blur(80px);
+  }
+
+  /* Pulsing ring */
+  .hero-pulse {
+    animation: pulse-ring 3s ease-in-out infinite;
+  }
+  @keyframes pulse-ring {
+    0%, 100% { transform: scale(1);   opacity: 0.4; }
+    50%       { transform: scale(1.15); opacity: 0.8; }
+  }
+</style>

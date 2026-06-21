@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import WhyChooseUs from '../components/WhyChooseUs.astro';
+import PortfolioSection from '../components/PortfolioSection.astro';
+import Testimonials from '../components/Testimonials.astro';
+import BlogPreview from '../components/BlogPreview.astro';
+import CTABanner from '../components/CTABanner.astro';
+import ProcessSection from '../components/ProcessSection.astro';
+import { SITE } from '../config/site';
+---
+
+<BaseLayout
+  title={SITE.name}
+  description="Smartick Solutions Ltd — UK software consultancy specialising in bespoke software development, mobile apps, website development, API integrations, and software architecture consultation."
+>
+  <!-- JSON-LD: Local Business -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": SITE.name,
+    "url": SITE.url,
+    "telephone": SITE.phone,
+    "email": SITE.email,
+    "address": { "@type": "PostalAddress", "addressCountry": "GB" },
+    "sameAs": [SITE.linkedin],
+    "priceRange": "££",
+    "openingHours": "Mo-Fr 09:00-17:00",
+    "serviceArea": { "@type": "Country", "name": "United Kingdom" },
+  })} />
+
+  <Header />
+  <main id="main-content">
+    <Hero />
+    <ServicesSection />
+    <ProcessSection />
+    <WhyChooseUs />
+    <PortfolioSection preview />
+    <Testimonials />
+    <BlogPreview />
+    <CTABanner />
+  </main>
+  <Footer />
+</BaseLayout>
