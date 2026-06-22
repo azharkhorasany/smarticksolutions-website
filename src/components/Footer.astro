@@ -2,11 +2,11 @@
 import { SITE, NAV_LINKS } from '../config/site';
 
 const services = [
-  { label: 'Bespoke Software Development', href: '/services#bespoke' },
-  { label: 'Software Architecture', href: '/services#architecture' },
-  { label: 'Integration Services', href: '/services#integration' },
-  { label: 'Mobile App Development', href: '/services#mobile' },
-  { label: 'Website Development', href: '/services#websites' },
+  { label: 'Bespoke Software Development', href: '/services/bespoke-software-development' },
+  { label: 'Software Architecture', href: '/services/software-architecture-consultation' },
+  { label: 'Integration Services', href: '/services/api-integration-services' },
+  { label: 'Mobile App Development', href: '/services/mobile-app-development' },
+  { label: 'Website Development', href: '/services/website-development' },
 ];
 
 const year = new Date().getFullYear();
@@ -116,9 +116,6 @@ const year = new Date().getFullYear();
               <a href={href} class="text-gray-400 hover:text-white transition-colors duration-200 text-sm">{label}</a>
             </li>
           ))}
-          <li>
-            <a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-200 text-sm">Contact</a>
-          </li>
         </ul>
       </div>
 
@@ -151,9 +148,13 @@ const year = new Date().getFullYear();
           {SITE.email}
         </a>
       </div>
-      <div class="text-xs text-gray-500">
+      <div class="text-xs text-gray-500 text-right">
         <p>© {year} {SITE.name}. All rights reserved.</p>
-        <p>{SITE.registered}. Company No. 12768446</p>
+        <p class="mt-1">{SITE.registered}. Company No. 12768446</p>
+        <div class="flex gap-4 mt-2 justify-end">
+          <a href="/privacy-policy" class="hover:text-gray-300 transition-colors">Privacy Policy</a>
+          <a href="/terms" class="hover:text-gray-300 transition-colors">Terms & Conditions</a>
+        </div>
       </div>
     </div>
   </div>

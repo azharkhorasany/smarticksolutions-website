@@ -14,9 +14,19 @@ import { SITE } from '../config/site';
 ---
 
 <BaseLayout
-  title={SITE.name}
-  description="Smartick Solutions Ltd — UK software consultancy specialising in bespoke software development, mobile apps, website development, API integrations, and software architecture consultation."
+  title="Bespoke Software Development for UK Businesses"
+  description="UK software consultancy building bespoke software, mobile apps, websites, and API integrations. Fixed-price projects, no hidden costs."
 >
+  <!-- JSON-LD: WebSite -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": SITE.name,
+    "url": SITE.url,
+    "description": SITE.description,
+    "inLanguage": "en-GB",
+  })} />
+
   <!-- JSON-LD: Local Business -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",

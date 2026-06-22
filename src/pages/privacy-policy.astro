@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../config/site';
+
+const lastUpdated = '22 June 2026';
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description="How Smartick Solutions Ltd collects, uses, and protects your personal data. In compliance with UK GDPR and the Data Protection Act 2018."
+  breadcrumbs={[{ name: 'Privacy Policy', url: '/privacy-policy' }]}
+>
+  <Header />
+  <main id="main-content">
+
+    <section
+      class="relative overflow-hidden py-16 md:py-20"
+      style="background: linear-gradient(135deg, #070838 0%, #0f1360 55%, #1B1F8A 100%);"
+    >
+      <div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle, rgba(255,255,255,0.10) 1px, transparent 1px); background-size: 26px 26px;" aria-hidden="true"></div>
+      <div class="container-custom relative z-10">
+        <p class="text-xs font-bold uppercase tracking-widest text-scarlet mb-4">Legal</p>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4" style="letter-spacing: -0.03em;">Privacy Policy</h1>
+        <p class="text-gray-400 text-sm">Last updated: {lastUpdated}</p>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-20 bg-white">
+      <div class="container-custom">
+        <div class="max-w-3xl mx-auto prose prose-lg max-w-none">
+
+          <h2>Who We Are</h2>
+          <p>
+            Smartick Solutions Ltd is a software consultancy registered in England and Wales. We build bespoke software, mobile apps, websites, and API integrations for UK businesses.
+          </p>
+          <p>
+            When this policy refers to "we", "us", or "our", it means Smartick Solutions Ltd. You can contact us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+          </p>
+
+          <h2>What Personal Data We Collect</h2>
+          <p>We collect personal data only when you provide it to us. This happens in the following contexts:</p>
+          <ul>
+            <li><strong>Contact form submissions</strong> — your name, email address, phone number (if provided), company name (if provided), and the content of your message.</li>
+            <li><strong>Email correspondence</strong> — any personal data contained in emails you send to us.</li>
+            <li><strong>Business enquiries</strong> — information you share with us during discovery calls or meetings.</li>
+          </ul>
+          <p>We do not use cookies for tracking or analytics, and we do not run advertising on our website. Our website does not require you to create an account.</p>
+
+          <h2>How We Use Your Personal Data</h2>
+          <p>We use personal data you provide for the following purposes:</p>
+          <ul>
+            <li>Responding to your enquiry or message.</li>
+            <li>Discussing, scoping, and delivering services you have requested.</li>
+            <li>Communicating with you as part of an ongoing client relationship.</li>
+          </ul>
+          <p>We process this data on the basis of <strong>legitimate interests</strong> (responding to business enquiries) and, where a contract exists, <strong>contract performance</strong>.</p>
+          <p>We do not use your personal data for unsolicited marketing. We will not add you to a mailing list without your explicit consent.</p>
+
+          <h2>How Long We Retain Your Data</h2>
+          <p>We retain personal data for as long as reasonably necessary for the purpose it was collected:</p>
+          <ul>
+            <li>Contact form enquiries that do not result in a project are retained for up to 12 months, then deleted.</li>
+            <li>Data relating to client projects is retained for the duration of the engagement and up to 6 years after completion, in compliance with our legal and accounting obligations.</li>
+          </ul>
+
+          <h2>Who We Share Your Data With</h2>
+          <p>We do not sell, rent, or share your personal data with third parties for their own purposes.</p>
+          <p>We use the following third-party services which may process data on our behalf:</p>
+          <ul>
+            <li><strong>Web3Forms</strong> — processes contact form submissions. Submissions are delivered to our email inbox. Web3Forms does not store submitted data beyond delivery.</li>
+            <li><strong>Google Fonts</strong> — our website loads fonts from Google's CDN, which involves a connection to Google's servers. No personal data is transmitted beyond your IP address as part of the standard HTTP request.</li>
+          </ul>
+
+          <h2>Your Rights</h2>
+          <p>Under UK GDPR, you have the following rights in relation to your personal data:</p>
+          <ul>
+            <li><strong>Right of access</strong> — you can request a copy of the personal data we hold about you.</li>
+            <li><strong>Right to rectification</strong> — you can ask us to correct inaccurate data.</li>
+            <li><strong>Right to erasure</strong> — you can ask us to delete your data where there is no legitimate reason to retain it.</li>
+            <li><strong>Right to restrict processing</strong> — you can ask us to limit how we use your data in certain circumstances.</li>
+            <li><strong>Right to object</strong> — you can object to processing based on legitimate interests.</li>
+          </ul>
+          <p>To exercise any of these rights, contact us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. We will respond within 30 days.</p>
+          <p>If you believe we have not handled your data correctly, you have the right to lodge a complaint with the <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">Information Commissioner's Office (ICO)</a>.</p>
+
+          <h2>Data Security</h2>
+          <p>We take reasonable technical and organisational measures to protect your personal data against unauthorised access, loss, or disclosure. Our website is served over HTTPS.</p>
+
+          <h2>Changes to This Policy</h2>
+          <p>We may update this privacy policy from time to time. The date at the top of this page reflects when it was last revised. Continued use of our website after a change constitutes acceptance of the updated policy.</p>
+
+          <h2>Contact Us</h2>
+          <p>For any privacy-related questions or to exercise your data rights, contact us at:</p>
+          <p>
+            <strong>Smartick Solutions Ltd</strong><br />
+            Email: <a href={`mailto:${SITE.email}`}>{SITE.email}</a><br />
+            {SITE.registered}
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>

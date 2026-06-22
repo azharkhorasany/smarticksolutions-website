@@ -23,11 +23,17 @@ const categoryColours: Record<string, string> = {
 function formatDate(date: Date) {
   return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 }
+
+function calcReadingTime(post: (typeof allPosts)[number]): number {
+  const words = post.body.split(/\s+/).filter((w: string) => w.length > 0).length;
+  return post.data.readingTime ?? Math.max(1, Math.ceil(words / 200));
+}
 ---
 
 <BaseLayout
-  title="Blog"
-  description="Insights on bespoke software development, API integrations, mobile apps, and technology strategy for UK businesses — from the Smartick Solutions team."
+  title="Software Development Blog for UK Businesses"
+  description="Practical insights on bespoke software, API integrations, mobile apps, and technology strategy — written for business owners, not just developers."
+  breadcrumbs={[{ name: 'Blog', url: '/blog' }]}
 >
   <Header />
   <main id="main-content">
@@ -60,9 +66,7 @@ function formatDate(date: Date) {
                   <span class="text-xs font-bold uppercase tracking-wide text-scarlet bg-scarlet/15 border border-scarlet/30 px-3 py-1 rounded-full">
                     {featuredPost.data.category}
                   </span>
-                  {featuredPost.data.readingTime && (
-                    <span class="text-xs text-gray-400">{featuredPost.data.readingTime} min read</span>
-                  )}
+                  <span class="text-xs text-gray-400">{calcReadingTime(featuredPost)} min read</span>
                 </div>
 
                 <h2
@@ -120,9 +124,7 @@ function formatDate(date: Date) {
                       <span class={`text-xs font-bold px-2.5 py-1 rounded-md ${categoryClass}`}>
                         {post.data.category}
                       </span>
-                      {post.data.readingTime && (
-                        <span class="text-xs text-gray-400 tabular-nums">{post.data.readingTime} min read</span>
-                      )}
+                      <span class="text-xs text-gray-400 tabular-nums">{calcReadingTime(post)} min read</span>
                     </div>
 
                     <h2

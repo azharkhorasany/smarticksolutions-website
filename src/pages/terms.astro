@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../config/site';
+
+const lastUpdated = '22 June 2026';
+---
+
+<BaseLayout
+  title="Terms & Conditions"
+  description="Terms and conditions for services provided by Smartick Solutions Ltd. Fixed-price software development, retainer agreements, and project delivery."
+  breadcrumbs={[{ name: 'Terms & Conditions', url: '/terms' }]}
+>
+  <Header />
+  <main id="main-content">
+
+    <section
+      class="relative overflow-hidden py-16 md:py-20"
+      style="background: linear-gradient(135deg, #070838 0%, #0f1360 55%, #1B1F8A 100%);"
+    >
+      <div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle, rgba(255,255,255,0.10) 1px, transparent 1px); background-size: 26px 26px;" aria-hidden="true"></div>
+      <div class="container-custom relative z-10">
+        <p class="text-xs font-bold uppercase tracking-widest text-scarlet mb-4">Legal</p>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4" style="letter-spacing: -0.03em;">Terms & Conditions</h1>
+        <p class="text-gray-400 text-sm">Last updated: {lastUpdated}</p>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-20 bg-white">
+      <div class="container-custom">
+        <div class="max-w-3xl mx-auto prose prose-lg max-w-none">
+
+          <h2>1. About These Terms</h2>
+          <p>
+            These terms govern the relationship between Smartick Solutions Ltd ("we", "us", "our") and clients who engage us to deliver software development, consultancy, or related services. By signing a project proposal or statement of work, or by engaging us for services, you agree to these terms.
+          </p>
+          <p>
+            These terms are governed by the laws of England and Wales.
+          </p>
+
+          <h2>2. Services</h2>
+          <p>
+            We provide bespoke software development, mobile app development, website development, API integration, and software architecture consultation services. The specific scope of any engagement is agreed in writing before work begins, in the form of a project proposal or statement of work.
+          </p>
+          <p>
+            We reserve the right to decline any project at our discretion, including after initial discussions.
+          </p>
+
+          <h2>3. Fixed-Price Projects</h2>
+          <p>
+            Where a project is agreed on a fixed-price basis, the agreed price covers the scope described in the project proposal. Work outside that scope — including additions, changes to requirements, or additional features — will be quoted separately and requires written agreement before proceeding.
+          </p>
+          <p>
+            We will notify you promptly if, during the course of a project, we identify a material change in scope that affects the agreed price.
+          </p>
+
+          <h2>4. Retainer Agreements</h2>
+          <p>
+            Retainer services are provided on a monthly rolling basis unless otherwise agreed. Hours not used in a given month do not carry forward. Retainer fees are invoiced at the start of each month and are due within 14 days.
+          </p>
+          <p>
+            Either party may terminate a retainer arrangement with 30 days' written notice.
+          </p>
+
+          <h2>5. Payment Terms</h2>
+          <p>
+            For fixed-price projects, payment is typically structured as a deposit on project commencement and the balance on completion, as agreed in the project proposal. Specific payment milestones will be set out in writing.
+          </p>
+          <p>
+            Invoices are due within 14 days of issue unless otherwise agreed in writing. Late payments may be subject to statutory interest under the Late Payment of Commercial Debts (Interest) Act 1998.
+          </p>
+          <p>
+            We reserve the right to pause work on a project where invoices are overdue by more than 14 days.
+          </p>
+
+          <h2>6. Intellectual Property</h2>
+          <p>
+            Upon receipt of full payment for a fixed-price project, intellectual property rights in the deliverables transfer to you. During development, and until payment is received in full, intellectual property remains with Smartick Solutions Ltd.
+          </p>
+          <p>
+            We may use open-source libraries and components in our work, which carry their own licences. We will inform you of any significant third-party licences that affect your use of the deliverables.
+          </p>
+          <p>
+            We retain the right to reference completed work in our portfolio and marketing materials, unless you request otherwise in writing.
+          </p>
+
+          <h2>7. Confidentiality</h2>
+          <p>
+            We treat all client information as confidential. We will not share your business information, technical details, or project specifics with third parties without your consent, except where required by law.
+          </p>
+          <p>
+            Where required, we are willing to sign a mutual non-disclosure agreement before detailed project discussions begin.
+          </p>
+
+          <h2>8. Warranties and Liability</h2>
+          <p>
+            We warrant that our services will be provided with reasonable care and skill. We will use reasonable efforts to ensure delivered software performs as described in the agreed scope.
+          </p>
+          <p>
+            We do not warrant that software will be entirely free of defects. Where defects are identified in delivered work within 30 days of delivery, we will address them at no additional charge, provided they fall within the agreed scope.
+          </p>
+          <p>
+            Our total liability to you in connection with any engagement will not exceed the fees paid by you for the relevant services in the preceding 12 months.
+          </p>
+          <p>
+            We are not liable for any indirect, consequential, or loss-of-profit damages arising from our services or any defects in deliverables.
+          </p>
+
+          <h2>9. Client Responsibilities</h2>
+          <p>
+            You agree to provide timely feedback, necessary access, and relevant information to enable us to deliver the agreed work. Delays caused by late feedback or unavailability of required resources may affect project timelines and are not our responsibility.
+          </p>
+
+          <h2>10. Changes to These Terms</h2>
+          <p>
+            We may update these terms from time to time. The version in force at the time of any engagement is the one that applies to that engagement.
+          </p>
+
+          <h2>11. Contact</h2>
+          <p>
+            For any questions about these terms, contact us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+          </p>
+          <p>
+            <strong>Smartick Solutions Ltd</strong><br />
+            {SITE.registered}
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { portfolioItems } from '../../data/portfolio';
+import { SITE } from '../../config/site';
+
+export function getStaticPaths() {
+  return portfolioItems.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+---
+
+<BaseLayout
+  title={item.seoTitle}
+  description={item.seoDescription}
+  breadcrumbs={[
+    { name: 'Portfolio', url: '/portfolio' },
+    { name: item.title, url: `/portfolio/${item.slug}` },
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": item.title,
+    "description": item.seoDescription,
+    "author": { "@type": "Organization", "name": SITE.name, "url": SITE.url },
+    "publisher": { "@type": "Organization", "name": SITE.name, "url": SITE.url },
+  })} />
+
+  <Header />
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section
+      class={`relative overflow-hidden py-20 md:py-28 bg-gradient-to-br ${item.gradient}`}
+    >
+      <div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 26px 26px;" aria-hidden="true"></div>
+      <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 55% 70% at 90% 10%, rgba(255,255,255,0.06) 0%, transparent 60%);" aria-hidden="true"></div>
+
+      <div class="container-custom relative z-10">
+        <div class="max-w-3xl">
+          <a href="/portfolio" class="inline-flex items-center gap-1.5 text-white/60 hover:text-white text-sm mb-8 transition-colors group">
+            <svg class="h-4 w-4 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+            </svg>
+            All Projects
+          </a>
+          <span class="inline-block text-xs font-bold uppercase tracking-widest text-white/60 bg-white/10 px-3 py-1 rounded-full mb-5">
+            {item.category}
+          </span>
+          <h1 class="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-5" style="letter-spacing: -0.03em;">
+            {item.title}
+          </h1>
+          <p class="text-white/80 text-lg leading-relaxed max-w-2xl mb-8">{item.description}</p>
+          <div class="flex flex-wrap gap-2">
+            {item.tags.map((tag) => (
+              <span class="text-xs px-3 py-1 bg-white/15 text-white border border-white/20 rounded-full font-medium">{tag}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case study content -->
+    <section class="py-20 md:py-28 bg-white">
+      <div class="container-custom">
+        <div class="max-w-3xl mx-auto">
+          <div class="space-y-14">
+
+            <div>
+              <p class="section-label mb-3">The Challenge</p>
+              <p class="text-gray-600 leading-relaxed text-lg">{item.challenge}</p>
+            </div>
+
+            <hr class="border-gray-100" />
+
+            <div>
+              <p class="section-label mb-3">Our Approach</p>
+              <p class="text-gray-600 leading-relaxed text-lg">{item.solution}</p>
+            </div>
+
+            <hr class="border-gray-100" />
+
+            <div>
+              <p class="section-label mb-3">The Outcome</p>
+              <p class="text-gray-600 leading-relaxed text-lg">{item.outcome}</p>
+            </div>
+
+          </div>
+
+          <div class="mt-16 flex flex-col sm:flex-row sm:items-center gap-4">
+            <a href="/contact" class="btn-primary">Start a Similar Project</a>
+            <a href="/portfolio" class="btn-secondary">View All Projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CTABanner
+      title="Have a Similar Challenge?"
+      subtitle="Tell us about your project and we'll come back with an honest assessment and a clear plan."
+      primaryCta={{ label: 'Get in Touch', href: '/contact' }}
+      secondaryCta={{ label: 'See Our Services', href: '/services' }}
+    />
+  </main>
+  <Footer />
+</BaseLayout>

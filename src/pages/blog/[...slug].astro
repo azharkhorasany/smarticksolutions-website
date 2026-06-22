@@ -14,12 +14,25 @@ export async function getStaticPaths() {
   }));
 }
 
+function slugifyTag(tag: string): string {
+  return tag.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const wordCount = post.body.split(/\s+/).filter((w: string) => w.length > 0).length;
+const readingTime = post.data.readingTime ?? Math.max(1, Math.ceil(wordCount / 200));
 
 const formattedDate = post.data.pubDate.toLocaleDateString('en-GB', {
   day: 'numeric', month: 'long', year: 'numeric',
 });
+
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter(p => p.slug !== post.slug && p.data.category === post.data.category)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
 <BaseLayout
@@ -27,13 +40,16 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-GB', {
   description={post.data.description}
   article
   pubDate={post.data.pubDate}
+  breadcrumbs={[{ name: 'Blog', url: '/blog' }, { name: post.data.title, url: `/blog/${post.slug}` }]}
 >
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     "headline": post.data.title,
     "description": post.data.description,
     "datePublished": post.data.pubDate.toISOString(),
+    "dateModified": post.data.pubDate.toISOString(),
+    "image": `${SITE.url}${SITE.ogImage}`,
     "author": { "@type": "Organization", "name": SITE.name, "url": SITE.url },
     "publisher": { "@type": "Organization", "name": SITE.name, "url": SITE.url },
   })} />
@@ -131,9 +147,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-GB', {
             <span class="text-xs font-bold uppercase tracking-wide text-scarlet bg-scarlet/15 border border-scarlet/30 px-3 py-1 rounded-full">
               {post.data.category}
             </span>
-            {post.data.readingTime && (
-              <span class="text-xs text-gray-400">{post.data.readingTime} min read</span>
-            )}
+            <span class="text-xs text-gray-400">{readingTime} min read</span>
           </div>
 
           <h1
@@ -156,9 +170,12 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-GB', {
           {post.data.tags.length > 0 && (
             <div class="flex flex-wrap gap-2 mt-5">
               {post.data.tags.map((tag) => (
-                <span class="text-xs px-2.5 py-1 bg-white/8 text-gray-400 border border-white/10 rounded-full">
+                <a
+                  href={`/blog/tag/${slugifyTag(tag)}`}
+                  class="text-xs px-2.5 py-1 bg-white/8 text-gray-400 border border-white/10 rounded-full hover:bg-white/15 hover:text-white transition-colors"
+                >
                   {tag}
-                </span>
+                </a>
               ))}
             </div>
           )}
@@ -193,6 +210,30 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-GB', {
         </div>
       </div>
     </section>
+
+    {relatedPosts.length > 0 && (
+      <section class="py-16 md:py-20 bg-navy-50">
+        <div class="container-custom">
+          <p class="section-label mb-8">Related Articles</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {relatedPosts.map(related => {
+              const rWordCount = related.body.split(/\s+/).filter((w: string) => w.length > 0).length;
+              const rReadingTime = related.data.readingTime ?? Math.max(1, Math.ceil(rWordCount / 200));
+              return (
+                <a href={`/blog/${related.slug}`} class="card p-6 group block hover:shadow-md transition-shadow">
+                  <p class="text-xs font-bold text-scarlet uppercase tracking-wide mb-2">{related.data.category}</p>
+                  <h3 class="font-extrabold text-navy-950 leading-snug mb-2 group-hover:text-scarlet transition-colors" style="letter-spacing:-0.02em; font-size:1rem;">
+                    {related.data.title}
+                  </h3>
+                  <p class="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">{related.data.description}</p>
+                  <span class="text-xs text-gray-400">{rReadingTime} min read</span>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    )}
 
     <CTABanner
       title="Ready to Put This Into Practice?"

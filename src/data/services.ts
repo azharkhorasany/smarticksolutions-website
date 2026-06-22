@@ -1,14 +1,22 @@
----
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Hero from '../components/Hero.astro';
-import CTABanner from '../components/CTABanner.astro';
-const services = [
+export interface Service {
+  id: string;
+  slug: string;
+  title: string;
+  tagline: string;
+  description: string;
+  includes: string[];
+  process: string[];
+  gradient: string;
+  seoTitle: string;
+  seoDescription: string;
+}
+
+export const services: Service[] = [
   {
     id: 'bespoke',
+    slug: 'bespoke-software-development',
     title: 'Bespoke Software Development',
-    tagline: 'Software built for your business, not someone else\'s.',
+    tagline: "Software built for your business, not someone else's.",
     description: `Off-the-shelf software is built for the average business — which means it fits no business perfectly. Bespoke software is built around your processes, your workflows, and your specific requirements.
 
 We build everything from internal business tools and customer-facing web applications to complex multi-user enterprise systems. Every project starts with a thorough discovery phase to ensure we understand your problem before we write a single line of code.`,
@@ -22,9 +30,12 @@ We build everything from internal business tools and customer-facing web applica
     ],
     process: ['Discovery & requirements', 'Architecture & design', 'Iterative development', 'Testing & QA', 'Deployment & go-live', 'Ongoing support'],
     gradient: 'from-navy to-navy-dark',
+    seoTitle: 'Bespoke Software Development UK | Smartick Solutions',
+    seoDescription: 'Custom software built around your business processes — web applications, internal tools, and enterprise systems. Fixed-price projects, UK-based team.',
   },
   {
     id: 'architecture',
+    slug: 'software-architecture-consultation',
     title: 'Software Architecture Consultation',
     tagline: 'The right decisions before the first line of code.',
     description: `Architecture decisions made early in a project shape everything that follows. Choosing the wrong tech stack, overlooking scalability requirements, or coupling systems too tightly can cost ten times more to fix later than to get right upfront.
@@ -40,9 +51,12 @@ We provide independent, experienced eyes on your technology decisions — whethe
     ],
     process: ['Initial assessment', 'Codebase / requirements review', 'Risk identification', 'Recommendations report', 'Roadmap planning', 'Optional implementation oversight'],
     gradient: 'from-navy-mid to-navy-dark',
+    seoTitle: 'Software Architecture Consultation UK | Smartick Solutions',
+    seoDescription: 'Independent architecture reviews, tech stack evaluations, and system design for UK businesses. Avoid costly early mistakes with expert guidance.',
   },
   {
     id: 'integration',
+    slug: 'api-integration-services',
     title: 'Integration Services',
     tagline: 'Connect your tools. Eliminate the manual work.',
     description: `Most businesses run on a mix of software tools that don't talk to each other — leading to duplicate data entry, errors, delays, and frustrated staff. Integrations solve this by making your systems communicate automatically.
@@ -58,9 +72,12 @@ We design and build integrations between your internal systems and the third-par
     ],
     process: ['System mapping & analysis', 'Data model alignment', 'Integration design', 'Build & testing', 'Monitoring setup', 'Documentation & ongoing support'],
     gradient: 'from-emerald-600 to-teal-800',
+    seoTitle: 'API Integration Services UK | Smartick Solutions',
+    seoDescription: 'Connect Xero, Salesforce, Stripe, and your other tools so they share data automatically. Eliminate manual data entry with reliable API integrations.',
   },
   {
     id: 'mobile',
+    slug: 'mobile-app-development',
     title: 'Mobile App Development',
     tagline: 'Apps your users will actually use.',
     description: `A mobile app is only valuable if people use it. We design and build iOS and Android applications with a relentless focus on user experience — because an app that doesn't get used is a wasted investment.
@@ -76,9 +93,12 @@ We build cross-platform apps using React Native and .NET MAUI, giving you a sing
     ],
     process: ['Discovery & UX planning', 'Wireframing & design', 'Sprint-based development', 'Device & OS testing', 'Store submission', 'Post-launch support'],
     gradient: 'from-scarlet to-red-800',
+    seoTitle: 'Mobile App Development UK — iOS & Android | Smartick Solutions',
+    seoDescription: 'Cross-platform iOS and Android apps built with React Native and .NET MAUI. Designed for real-world use, delivered on time and on budget.',
   },
   {
     id: 'websites',
+    slug: 'website-development',
     title: 'Website Development',
     tagline: 'Websites that work as hard as you do.',
     description: `A website is often the first impression a potential client has of your business. We build fast, modern, responsive websites that represent your brand professionally — and are built to rank well in search engines from day one.
@@ -94,102 +114,7 @@ From a clean corporate site to a fully-featured e-commerce platform, we deliver 
     ],
     process: ['Discovery & sitemap', 'Design & brand alignment', 'Development', 'Content integration', 'SEO & performance audit', 'Launch & training'],
     gradient: 'from-blue-600 to-indigo-800',
+    seoTitle: 'Website Development UK — Fast, Modern Sites | Smartick Solutions',
+    seoDescription: 'Professional websites built for performance and SEO from day one. Corporate sites, e-commerce, and landing pages for UK businesses.',
   },
 ];
-
-const serviceSlugs: Record<string, string> = {
-  bespoke: 'bespoke-software-development',
-  architecture: 'software-architecture-consultation',
-  integration: 'api-integration-services',
-  mobile: 'mobile-app-development',
-  websites: 'website-development',
-};
----
-
-<BaseLayout
-  title="Software Development Services for UK Businesses"
-  description="Bespoke software, mobile apps, API integrations, websites, and architecture consultation for UK businesses. Fixed-price projects from a UK-based team."
-  breadcrumbs={[{ name: 'Services', url: '/services' }]}
->
-  <Header />
-  <main id="main-content">
-    <Hero
-      title="What We Build"
-      subtitle="Five core disciplines, one consistent standard: software that solves real problems, delivered on time and on budget."
-      compact
-      badge="Our Services"
-    />
-
-    <div class="py-20 bg-white">
-      <div class="container-custom">
-        <div class="space-y-24">
-          {services.map((service, i) => (
-            <section id={service.id} class="reveal scroll-mt-24">
-              <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-start ${i % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
-
-                <!-- Text content -->
-                <div class={i % 2 === 1 ? 'lg:col-start-2' : ''}>
-                  <p class="section-label mb-2">{`0${i + 1}`}</p>
-                  <h2 class="section-title">{service.title}</h2>
-                  <p class="text-scarlet font-semibold mt-1 mb-5">{service.tagline}</p>
-                  {service.description.split('\n\n').map((para) => (
-                    <p class="text-gray-600 leading-relaxed mb-4">{para}</p>
-                  ))}
-                  <div class="flex flex-wrap items-center gap-3 mt-4">
-                    <a href="/contact" class="btn-primary">
-                      Discuss This Service
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </a>
-                    <a href={`/services/${serviceSlugs[service.id]}`} class="btn-secondary">
-                      Full Details
-                    </a>
-                  </div>
-                </div>
-
-                <!-- Cards column -->
-                <div class={`space-y-5 ${i % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
-                  <!-- What's included -->
-                  <div class="card p-6">
-                    <h3 class="font-bold text-navy-dark mb-4 text-sm uppercase tracking-wide">What's Included</h3>
-                    <ul class="space-y-2">
-                      {service.includes.map((item) => (
-                        <li class="flex items-start gap-2 text-sm text-gray-600">
-                          <svg class="h-4 w-4 text-scarlet mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                          </svg>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <!-- Process -->
-                  <div class={`rounded-xl bg-gradient-to-br ${service.gradient} p-6`}>
-                    <h3 class="font-bold text-white mb-4 text-sm uppercase tracking-wide">Our Process</h3>
-                    <ol class="space-y-2">
-                      {service.process.map((step, si) => (
-                        <li class="flex items-center gap-3 text-sm text-white/90">
-                          <span class="flex-shrink-0 w-5 h-5 rounded-full bg-white/20 text-white text-xs flex items-center justify-center font-bold">{si + 1}</span>
-                          {step}
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                </div>
-              </div>
-
-              {i < services.length - 1 && (
-                <hr class="mt-24 border-gray-100" />
-              )}
-            </section>
-          ))}
-        </div>
-      </div>
-    </div>
-
-    <CTABanner />
-  </main>
-  <Footer />
-</BaseLayout>

@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { services } from '../../data/services';
+import { SITE } from '../../config/site';
+
+export function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug }, props: { service: s } }));
+}
+
+const { service } = Astro.props;
+---
+
+<BaseLayout
+  title={service.seoTitle}
+  description={service.seoDescription}
+  breadcrumbs={[
+    { name: 'Services', url: '/services' },
+    { name: service.title, url: `/services/${service.slug}` },
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": service.title,
+    "description": service.seoDescription,
+    "provider": { "@type": "Organization", "name": SITE.name, "url": SITE.url },
+    "areaServed": { "@type": "Country", "name": "United Kingdom" },
+    "url": `${SITE.url}/services/${service.slug}`,
+  })} />
+
+  <Header />
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section
+      class="relative overflow-hidden py-20 md:py-28"
+      style="background: linear-gradient(135deg, #070838 0%, #0f1360 55%, #1B1F8A 100%);"
+    >
+      <div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle, rgba(255,255,255,0.10) 1px, transparent 1px); background-size: 26px 26px;" aria-hidden="true"></div>
+      <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 55% 70% at 90% 10%, rgba(232,0,29,0.14) 0%, transparent 60%);" aria-hidden="true"></div>
+
+      <!-- Geometric decoration -->
+      <div class="absolute right-0 top-0 h-full w-1/2 hidden lg:block pointer-events-none" aria-hidden="true">
+        <svg class="absolute right-0 top-0 h-full w-full opacity-[0.16]" viewBox="0 0 600 280" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="80"  y1="0"   x2="80"  y2="280" stroke="white" stroke-width="1"/>
+          <line x1="200" y1="0"   x2="200" y2="280" stroke="white" stroke-width="1"/>
+          <line x1="340" y1="0"   x2="340" y2="280" stroke="white" stroke-width="1"/>
+          <line x1="480" y1="0"   x2="480" y2="280" stroke="white" stroke-width="1"/>
+          <line x1="0"   y1="70"  x2="600" y2="70"  stroke="white" stroke-width="1"/>
+          <line x1="0"   y1="140" x2="600" y2="140" stroke="white" stroke-width="1"/>
+          <line x1="0"   y1="210" x2="600" y2="210" stroke="white" stroke-width="1"/>
+          <circle cx="80"  cy="70"  r="4" fill="white"/>
+          <circle cx="200" cy="70"  r="4" fill="white"/>
+          <circle cx="340" cy="70"  r="4" fill="white"/>
+          <circle cx="480" cy="70"  r="4" fill="white"/>
+          <circle cx="80"  cy="140" r="4" fill="white"/>
+          <circle cx="200" cy="140" r="7" fill="white"/>
+          <circle cx="340" cy="140" r="4" fill="white"/>
+          <circle cx="480" cy="140" r="7" fill="white"/>
+          <circle cx="80"  cy="210" r="4" fill="white"/>
+          <circle cx="200" cy="210" r="4" fill="white"/>
+          <circle cx="340" cy="210" r="7" fill="white"/>
+          <circle cx="480" cy="210" r="4" fill="white"/>
+          <path d="M 80 70 L 140 70 L 140 105 L 200 105" stroke="white" stroke-width="2"/>
+          <path d="M 200 140 L 270 140 L 270 175 L 340 175 L 340 210" stroke="white" stroke-width="2"/>
+          <path d="M 340 70  L 410 70  L 410 140 L 480 140" stroke="white" stroke-width="1.5"/>
+          <path d="M 80  210 L 80  175 L 140 175 L 140 140 L 200 140" stroke="white" stroke-width="1.5"/>
+          <rect x="148" y="108" width="104" height="64" rx="6" stroke="white" stroke-width="1.5" fill="none"/>
+          <rect x="158" y="118" width="84"  height="44" rx="3" stroke="white" stroke-width="1" fill="white" fill-opacity="0.04"/>
+          <circle cx="530" cy="48"  r="46" stroke="white" stroke-width="1" fill="none"/>
+          <circle cx="530" cy="48"  r="28" stroke="white" stroke-width="1" fill="none"/>
+          <circle cx="530" cy="48"  r="12" fill="white" fill-opacity="0.18"/>
+          <polygon points="510,230 540,248 540,284 510,302 480,284 480,248" stroke="white" stroke-width="1.5" fill="none"/>
+          <polygon points="430,175 445,190 430,205 415,190" stroke="white" stroke-width="1.5" fill="none"/>
+        </svg>
+        <div class="absolute right-12 top-1/2 -translate-y-1/2 w-48 h-48 rounded-full border border-white/[0.08] flex items-center justify-center">
+          <div class="w-32 h-32 rounded-full border border-white/[0.08] flex items-center justify-center">
+            <div class="w-16 h-16 rounded-full border border-scarlet/25 hero-pulse"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-custom relative z-10">
+        <div class="max-w-3xl">
+          <a href="/services" class="inline-flex items-center gap-1.5 text-gray-400 hover:text-white text-sm mb-8 transition-colors group">
+            <svg class="h-4 w-4 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+            </svg>
+            All Services
+          </a>
+          <p class="text-xs font-bold uppercase tracking-widest text-scarlet mb-4">Service</p>
+          <h1 class="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4" style="letter-spacing: -0.03em;">
+            {service.title}
+          </h1>
+          <p class="text-scarlet font-semibold text-lg mb-6">{service.tagline}</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/contact" class="btn-primary">
+              Discuss This Service
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+            <a href="/pricing" class="btn-outline-white">View Pricing</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="py-20 md:py-28 bg-white">
+      <div class="container-custom">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+          <!-- Description -->
+          <div>
+            <p class="section-label mb-4">Overview</p>
+            {service.description.split('\n\n').map((para) => (
+              <p class="text-gray-600 leading-relaxed mb-5 text-lg">{para}</p>
+            ))}
+          </div>
+
+          <!-- What's included + Process -->
+          <div class="space-y-6">
+            <div class="card p-7">
+              <h2 class="font-bold text-navy-dark mb-5 text-sm uppercase tracking-wide">What's Included</h2>
+              <ul class="space-y-3">
+                {service.includes.map((item) => (
+                  <li class="flex items-start gap-2.5 text-sm text-gray-600">
+                    <svg class="h-4 w-4 text-scarlet mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class={`rounded-xl bg-gradient-to-br ${service.gradient} p-7`}>
+              <h2 class="font-bold text-white mb-5 text-sm uppercase tracking-wide">How We Work</h2>
+              <ol class="space-y-3">
+                {service.process.map((step, i) => (
+                  <li class="flex items-center gap-3 text-sm text-white/90">
+                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-white/20 text-white text-xs flex items-center justify-center font-bold">{i + 1}</span>
+                    {step}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Other services -->
+    <section class="py-16 bg-navy-50">
+      <div class="container-custom">
+        <p class="section-label mb-6 text-center">Also From Smartick Solutions</p>
+        <div class="flex flex-wrap justify-center gap-3">
+          {services.filter(s => s.slug !== service.slug).map(s => (
+            <a
+              href={`/services/${s.slug}`}
+              class="px-5 py-2.5 rounded-full border border-navy-200 bg-white text-navy-800 text-sm font-medium hover:border-navy hover:bg-navy hover:text-white transition-colors duration-200"
+            >
+              {s.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTABanner
+      title={`Ready to Get Started with ${service.title}?`}
+      subtitle="Book a free discovery call and we'll give you a clear plan and honest pricing."
+      primaryCta={{ label: 'Get a Free Quote', href: '/contact' }}
+      secondaryCta={{ label: 'See Our Work', href: '/portfolio' }}
+    />
+  </main>
+  <Footer />
+</BaseLayout>

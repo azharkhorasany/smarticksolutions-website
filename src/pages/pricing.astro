@@ -104,9 +104,19 @@ const faqs = [
 ---
 
 <BaseLayout
-  title="Pricing"
-  description="Transparent pricing for website development, bespoke software, and ongoing support. Fixed-price projects, no hidden costs."
+  title="Software Development Pricing UK | Fixed-Price Projects"
+  description="Transparent, fixed-price packages for websites, bespoke software, and monthly retainers. No hidden costs — you know the price before we start."
+  breadcrumbs={[{ name: 'Pricing', url: '/pricing' }]}
 >
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.a },
+    })),
+  })} />
   <Header />
   <main id="main-content">
     <Hero

@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Hero from '../../../components/Hero.astro';
+import CTABanner from '../../../components/CTABanner.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  function slugifyTag(tag: string): string {
+    return tag.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  }
+
+  const posts = await getCollection('blog');
+  const tagMap = new Map<string, typeof posts>();
+
+  for (const post of posts) {
+    for (const tag of post.data.tags) {
+      const slug = slugifyTag(tag);
+      if (!tagMap.has(slug)) tagMap.set(slug, []);
+      tagMap.get(slug)!.push(post);
+    }
+  }
+
+  return Array.from(tagMap.entries()).map(([slug, tagPosts]) => {
+    const label = tagPosts[0].data.tags.find(t => slugifyTag(t) === slug) ?? slug;
+    return {
+      params: { tag: slug },
+      props: {
+        label,
+        posts: tagPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+      },
+    };
+  });
+}
+
+const { label, posts } = Astro.props;
+
+function slugifyTag(tag: string): string {
+  return tag.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+const categoryColours: Record<string, string> = {
+  'Software Development':  'bg-navy-50 text-navy-700 ring-1 ring-inset ring-navy-200',
+  'Integration Services':  'bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-200',
+  'Mobile Development':    'bg-scarlet-50 text-scarlet-600 ring-1 ring-inset ring-scarlet-200',
+  'Website Development':   'bg-violet-50 text-violet-700 ring-1 ring-inset ring-violet-200',
+  'Technology Strategy':   'bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-200',
+};
+---
+
+<BaseLayout
+  title={`Articles tagged "${label}"`}
+  description={`All Smartick Solutions articles tagged with "${label}" — practical insights on software development and technology for UK businesses.`}
+  breadcrumbs={[
+    { name: 'Blog', url: '/blog' },
+    { name: label, url: `/blog/tag/${Astro.params.tag}` },
+  ]}
+>
+  <Header />
+  <main id="main-content">
+    <Hero
+      title={`Tagged: ${label}`}
+      subtitle={`${posts.length} article${posts.length !== 1 ? 's' : ''} tagged with this topic.`}
+      compact
+      badge="Blog"
+    />
+
+    <section class="py-20 md:py-28 bg-white">
+      <div class="container-custom">
+        <div class="mb-8 reveal">
+          <a href="/blog" class="inline-flex items-center gap-1.5 text-gray-500 hover:text-navy text-sm transition-colors group">
+            <svg class="h-4 w-4 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+            </svg>
+            All articles
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post, i) => {
+            const categoryClass = categoryColours[post.data.category] ?? 'bg-gray-100 text-gray-600 ring-1 ring-inset ring-gray-200';
+            const wordCount = post.body.split(/\s+/).filter((w: string) => w.length > 0).length;
+            const readingTime = post.data.readingTime ?? Math.max(1, Math.ceil(wordCount / 200));
+            return (
+              <article
+                class="card group relative flex flex-col overflow-hidden reveal"
+                style={`transition-delay: ${i * 80}ms`}
+              >
+                <div class="flex flex-col flex-1 p-7">
+                  <div class="flex items-center justify-between mb-4">
+                    <span class={`text-xs font-bold px-2.5 py-1 rounded-md ${categoryClass}`}>
+                      {post.data.category}
+                    </span>
+                    <span class="text-xs text-gray-400 tabular-nums">{readingTime} min read</span>
+                  </div>
+
+                  <h2
+                    class="font-extrabold text-navy-950 leading-snug mb-3 group-hover:text-scarlet transition-colors duration-200"
+                    style="letter-spacing: -0.02em; font-size: 1.05rem;"
+                  >
+                    <a href={`/blog/${post.slug}`} class="after:absolute after:inset-0">
+                      {post.data.title}
+                    </a>
+                  </h2>
+
+                  <p class="text-gray-500 text-sm leading-relaxed flex-1 mb-6">
+                    {post.data.description}
+                  </p>
+
+                  <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <time class="text-xs text-gray-400" datetime={post.data.pubDate.toISOString()}>
+                      {formatDate(post.data.pubDate)}
+                    </time>
+                    <span class="inline-flex items-center gap-1 text-xs font-bold text-scarlet group-hover:gap-2 transition-all duration-200" aria-hidden="true">
+                      Read more
+                      <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <CTABanner
+      title="Want to Work With Us?"
+      subtitle="Reading our thinking is great. Building something together is better."
+      primaryCta={{ label: 'Start a Project', href: '/contact' }}
+      secondaryCta={{ label: 'View Services', href: '/services' }}
+    />
+  </main>
+  <Footer />
+</BaseLayout>

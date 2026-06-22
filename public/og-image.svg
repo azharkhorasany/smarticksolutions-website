@@ -1,0 +1,64 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#070838"/>
+      <stop offset="55%" style="stop-color:#0f1360"/>
+      <stop offset="100%" style="stop-color:#1B1F8A"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="95%" cy="5%" r="60%">
+      <stop offset="0%" style="stop-color:#E8001D;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#E8001D;stop-opacity:0"/>
+    </radialGradient>
+    <pattern id="dots" x="0" y="0" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="1" fill="white" fill-opacity="0.12"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Circuit decoration — right side -->
+  <g opacity="0.14" stroke="white" fill="none">
+    <line x1="780" y1="0"   x2="780" y2="630" stroke-width="1"/>
+    <line x1="900" y1="0"   x2="900" y2="630" stroke-width="1"/>
+    <line x1="1040" y1="0"  x2="1040" y2="630" stroke-width="1"/>
+    <line x1="750" y1="158" x2="1200" y2="158" stroke-width="1"/>
+    <line x1="750" y1="315" x2="1200" y2="315" stroke-width="1"/>
+    <line x1="750" y1="472" x2="1200" y2="472" stroke-width="1"/>
+    <circle cx="780"  cy="158" r="5" fill="white"/>
+    <circle cx="900"  cy="158" r="5" fill="white"/>
+    <circle cx="1040" cy="158" r="8" fill="white"/>
+    <circle cx="780"  cy="315" r="8" fill="white"/>
+    <circle cx="900"  cy="315" r="5" fill="white"/>
+    <circle cx="1040" cy="315" r="5" fill="white"/>
+    <circle cx="780"  cy="472" r="5" fill="white"/>
+    <circle cx="900"  cy="472" r="8" fill="white"/>
+    <circle cx="1040" cy="472" r="5" fill="white"/>
+    <path d="M 780 158 L 840 158 L 840 236 L 900 236" stroke-width="2"/>
+    <path d="M 900 315 L 970 315 L 970 394 L 1040 394 L 1040 472" stroke-width="2"/>
+    <path d="M 1040 158 L 1110 158 L 1110 315 L 1040 315" stroke-width="1.5"/>
+    <rect x="838" y="240" width="124" height="72" rx="6" stroke-width="1.5"/>
+    <circle cx="1120" cy="100" r="52" stroke-width="1"/>
+    <circle cx="1120" cy="100" r="32" stroke-width="1"/>
+    <circle cx="1120" cy="100" r="14" fill="white" fill-opacity="0.2"/>
+    <polygon points="1060,520 1090,538 1090,574 1060,592 1030,574 1030,538" stroke-width="1.5"/>
+  </g>
+
+  <!-- Scarlet accent bar -->
+  <rect x="80" y="200" width="6" height="80" rx="3" fill="#E8001D"/>
+
+  <!-- Main text -->
+  <text x="110" y="260" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="52" font-weight="800" fill="white" letter-spacing="-2">Smartick Solutions</text>
+  <text x="110" y="320" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="28" font-weight="400" fill="#9ca3af">UK Software Consultancy</text>
+
+  <!-- Tagline -->
+  <text x="110" y="410" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" fill="#d1d5db">Bespoke Software · Mobile Apps · Integrations · Websites</text>
+
+  <!-- Bottom domain -->
+  <text x="110" y="540" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="18" font-weight="500" fill="#4b5563">smarticksolutions.co.uk</text>
+
+  <!-- Scarlet dot accent -->
+  <circle cx="80" cy="540" r="5" fill="#E8001D"/>
+</svg>
