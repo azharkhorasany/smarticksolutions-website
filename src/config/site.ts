@@ -9,7 +9,7 @@ export const SITE = {
   email: "hello@smarticksolutions.co.uk",
   linkedin: "https://www.linkedin.com/company/smartick-solutions-ltd",
   registered: "Registered in England & Wales",
-  ogImage: "/og-image.svg",
+  ogImage: "/og-image.png",
 };
 
 export const NAV_LINKS = [
