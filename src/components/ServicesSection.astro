@@ -84,7 +84,7 @@ const accentGradients = [
         >
 
           <!-- Visual panel -->
-          <div class={`relative lg:col-span-2 bg-navy-dark flex items-center justify-center min-h-[220px] lg:min-h-0 overflow-hidden ${i % 2 === 1 ? 'lg:order-last' : ''}`}>
+          <div class={`relative lg:col-span-2 flex items-center justify-center min-h-[220px] lg:min-h-0 overflow-hidden ${i % 2 === 1 ? 'lg:order-last' : ''}`} style={`background: linear-gradient(135deg, #070838 0%, ${i % 2 === 0 ? '#131663' : '#0f1360'} 60%, #1B1F8A 100%);`}>
             <!-- Dot grid -->
             <div class="absolute inset-0" style="background-image: radial-gradient(circle, rgba(255,255,255,0.10) 1px, transparent 1px); background-size: 26px 26px;" aria-hidden="true"></div>
             <!-- Glow -->

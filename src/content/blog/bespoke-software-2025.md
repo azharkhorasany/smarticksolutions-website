@@ -5,7 +5,7 @@ pubDate: 2025-05-15
 author: "Smartick Solutions"
 category: "Software Development"
 tags: ["bespoke software", "custom development", "business technology", "ROI"]
-featured: true
+featured: false
 readingTime: 6
 ---
 

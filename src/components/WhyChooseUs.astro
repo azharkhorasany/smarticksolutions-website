@@ -1,8 +1,8 @@
 ---
 const stats = [
-  { value: '10+', label: 'Years of Experience' },
-  { value: '50+', label: 'Projects Delivered' },
-  { value: '100%', label: 'UK-Based Team' },
+  { value: '20+', label: 'Years of Experience' },
+  { value: '10+', label: 'Projects Delivered' },
+  { value: '100%', label: 'UK-Based' },
   { value: '24h', label: 'Avg. Response Time' },
 ];
 
@@ -38,7 +38,7 @@ const iconPaths: Record<string, string> = {
 ---
 
 <!-- Stats bar -->
-<section class="relative bg-navy py-14 overflow-hidden" aria-label="Company statistics">
+<section class="relative py-14 overflow-hidden" style="background: linear-gradient(135deg, #070838 0%, #0f1360 50%, #1B1F8A 100%);" aria-label="Company statistics">
   <!-- Dot grid -->
   <div class="absolute inset-0 stats-dots" aria-hidden="true"></div>
   <!-- Mesh -->
@@ -91,8 +91,9 @@ const iconPaths: Record<string, string> = {
   }
   .stats-mesh {
     background:
-      radial-gradient(ellipse 60% 80% at 10% 50%, rgba(43,48,220,0.35) 0%, transparent 65%),
-      radial-gradient(ellipse 50% 80% at 90% 50%, rgba(27,31,138,0.4)  0%, transparent 65%);
+      radial-gradient(ellipse 60% 80% at 10% 50%, rgba(27,31,138,0.45) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 80% at 90% 50%, rgba(7,8,56,0.6)     0%, transparent 65%),
+      radial-gradient(ellipse 30% 50% at 50% 50%, rgba(232,0,29,0.06)  0%, transparent 55%);
   }
   .stats-glow {
     background: radial-gradient(ellipse, rgba(255,255,255,0.06) 0%, transparent 70%);
@@ -101,7 +102,7 @@ const iconPaths: Record<string, string> = {
 </style>
 
 <!-- Why choose us -->
-<section class="py-20 md:py-28 bg-gray-50" id="why-us">
+<section class="py-20 md:py-28 bg-navy-50" id="why-us">
   <div class="container-custom">
     <div class="reveal">
       <p class="section-label">Why Smartick Solutions</p>
@@ -114,7 +115,7 @@ const iconPaths: Record<string, string> = {
     <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 gap-8">
       {reasons.map((reason, i) => (
         <div class="card p-8 reveal" style={`transition-delay: ${i * 100}ms`}>
-          <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-scarlet text-white mb-5">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl mb-5 text-white" style="background: linear-gradient(135deg, #c90019, #E8001D); box-shadow: 0 4px 12px rgba(232,0,29,0.28);">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d={iconPaths[reason.icon]} />
             </svg>

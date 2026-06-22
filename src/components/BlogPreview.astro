@@ -6,13 +6,13 @@ const posts = (await getCollection('blog'))
   .slice(0, 3);
 
 const categoryColours: Record<string, string> = {
-  'Software Development': 'bg-blue-100 text-blue-700',
-  'Integration Services': 'bg-emerald-100 text-emerald-700',
-  'Mobile Development': 'bg-red-100 text-red-700',
+  'Software Development': 'bg-navy-100 text-navy-800',
+  'Integration Services': 'bg-navy-200 text-navy-900',
+  'Mobile Development':   'bg-scarlet-100 text-scarlet-800',
 };
 ---
 
-<section class="py-20 md:py-28 bg-gray-50" id="blog-preview">
+<section class="py-20 md:py-28 bg-white" id="blog-preview">
   <div class="container-custom">
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 reveal">
       <div>
@@ -40,7 +40,7 @@ const categoryColours: Record<string, string> = {
         return (
           <article class="card group overflow-hidden reveal" style={`transition-delay: ${i * 80}ms`}>
             <!-- Colour band -->
-            <div class="h-2 bg-gradient-to-r from-navy to-scarlet"></div>
+            <div class="h-1.5" style="background: linear-gradient(90deg, #070838, #1B1F8A 40%, #E8001D 100%);"></div>
             <div class="p-7">
               <div class="flex items-center gap-3 mb-4">
                 <span class={`text-xs font-semibold px-3 py-1 rounded-full ${categoryClass}`}>
@@ -51,7 +51,7 @@ const categoryColours: Record<string, string> = {
                 )}
               </div>
 
-              <h3 class="font-bold text-navy-dark leading-snug mb-3 group-hover:text-scarlet transition-colors">
+              <h3 class="font-extrabold text-navy-950 leading-snug mb-3 group-hover:text-scarlet-600 transition-colors" style="letter-spacing:-0.01em">
                 <a href={`/blog/${post.slug}`} class="hover:underline underline-offset-2">
                   {post.data.title}
                 </a>

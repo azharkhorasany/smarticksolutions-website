@@ -8,14 +8,13 @@ import CTABanner from '../components/CTABanner.astro';
 const websitePackages = [
   {
     name: 'Starter',
-    price: 'From £2,500',
+    price: 'From £799',
     description: 'Perfect for startups and small businesses that need a professional web presence quickly.',
     features: [
       'Up to 5 pages',
       'Mobile-responsive design',
       'Contact form',
       'Basic on-page SEO',
-      'Google Analytics setup',
       '1 round of revisions',
       '30-day post-launch support',
     ],
@@ -24,9 +23,10 @@ const websitePackages = [
   },
   {
     name: 'Business',
-    price: 'From £5,000',
+    price: 'From £1,999',
     description: 'For growing businesses that need a fully-featured website that performs and converts.',
     features: [
+      'Everything in Starter, plus:',
       'Up to 15 pages',
       'Custom UI design',
       'CMS integration',
@@ -44,6 +44,7 @@ const websitePackages = [
     price: 'Custom quote',
     description: 'Complex requirements, custom integrations, and bespoke functionality — quoted per project.',
     features: [
+      'Everything in Business, plus:',
       'Unlimited pages',
       'Bespoke design system',
       'Custom backend & API',
@@ -60,21 +61,21 @@ const websitePackages = [
 const retainerPlans = [
   {
     name: 'Support',
-    price: 'From £300/mo',
+    price: 'From £299/mo',
     description: 'For teams that need reactive support and maintenance.',
     includes: ['Bug fixes & patches', 'Security updates', '4 hrs development/month', 'Email support'],
   },
   {
     name: 'Growth',
-    price: 'From £700/mo',
+    price: 'From £599/mo',
     description: 'Ongoing development partnership for continuous improvement.',
     includes: ['Everything in Support', '10 hrs development/month', 'Monthly strategy call', 'Priority response'],
   },
   {
     name: 'Partner',
-    price: 'From £1,500/mo',
+    price: 'From £1,499/mo',
     description: 'A dedicated development team for businesses serious about technology.',
-    includes: ['Everything in Growth', '25 hrs development/month', 'Weekly check-ins', 'Dedicated Slack channel', 'Architecture reviews'],
+    includes: ['Everything in Growth', '25 hrs development/month', 'Weekly check-ins', 'Architecture reviews'],
   },
 ];
 
@@ -85,15 +86,15 @@ const faqs = [
   },
   {
     q: 'How quickly can you start?',
-    a: 'Typically 2–4 weeks from signing. We keep a small project pipeline so we can give every client the attention they deserve. For urgent projects, contact us — we may be able to accommodate a faster start.',
+    a: 'Typically 2–4 weeks from signing. We are selective about the projects we take on so we can give every client the attention they deserve. For urgent projects, contact us — we may be able to accommodate a faster start.',
   },
   {
     q: 'Do I need a large budget?',
-    a: 'Not necessarily. Our Starter Web package begins at £2,500. We\'re transparent about costs in our first conversation — if your budget doesn\'t match your requirements, we\'ll tell you clearly and explore what\'s achievable within your means.',
+    a: 'Not necessarily. Our Starter Web package begins at £799. We\'re transparent about costs in our first conversation — if your budget doesn\'t match your requirements, we\'ll tell you clearly and explore what\'s achievable within your means.',
   },
   {
     q: 'What happens after the project launches?',
-    a: 'You own everything: the code, the design, the domain, all of it. We offer optional ongoing support via our retainer plans — but there\'s no obligation. We\'ll provide full documentation and handover regardless.',
+    a: 'Clients on a support retainer get ongoing maintenance and full management of the codebase — we stay close to the code so we can move quickly when you need us. If you ever decide to move on, we\'re happy to have a conversation about what a transition looks like for your situation.',
   },
   {
     q: 'Do you work with businesses outside the UK?',
@@ -147,12 +148,18 @@ const faqs = [
 
               <ul class="space-y-3 mb-8 flex-1">
                 {pkg.features.map((feature) => (
-                  <li class="flex items-start gap-2 text-sm">
-                    <svg class={`h-4 w-4 mt-0.5 flex-shrink-0 ${pkg.highlighted ? 'text-scarlet' : 'text-scarlet'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span class={pkg.highlighted ? 'text-navy-100' : 'text-gray-600'}>{feature}</span>
-                  </li>
+                  feature.startsWith('Everything in') ? (
+                    <li class={`text-xs font-bold uppercase tracking-wider pt-1 pb-0.5 ${pkg.highlighted ? 'text-scarlet' : 'text-scarlet'}`}>
+                      {feature}
+                    </li>
+                  ) : (
+                    <li class="flex items-start gap-2 text-sm">
+                      <svg class="h-4 w-4 mt-0.5 flex-shrink-0 text-scarlet" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class={pkg.highlighted ? 'text-navy-100' : 'text-gray-600'}>{feature}</span>
+                    </li>
+                  )
                 ))}
               </ul>
 
