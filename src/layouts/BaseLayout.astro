@@ -52,6 +52,10 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
     <meta name="generator" content={Astro.generator} />
     <meta name="google-site-verification" content="lYyJWEk0cIJfWJVA88cHvfFDavQLtFjNIuHQhuF_EaM" />
 
+    <!-- Security headers (via meta where HTTP headers unavailable on GitHub Pages) -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; form-action https://api.web3forms.com 'self'; connect-src 'self' https://api.web3forms.com; object-src 'none'; base-uri 'self';" />
+
     <!-- Primary SEO -->
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
